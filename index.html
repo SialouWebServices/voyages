@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123b73">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Mon voyage — Checklist Abidjan–Cotonou</title>
+<style>
+:root{--blue:#123b73;--blue2:#2563eb;--ink:#172033;--muted:#65728a;--bg:#f3f6fb;--line:#e4eaf2;--green:#16834a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}
+header{background:linear-gradient(135deg,#102e59,#2563eb);color:#fff;padding:28px 18px 34px}
+.wrap{max-width:760px;margin:auto}header .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;font-weight:700}
+h1{font-size:clamp(25px,5vw,36px);line-height:1.1;margin:9px 0}
+header p{margin:8px 0 0;color:#e1eaff}
+main{max-width:760px;margin:-17px auto 40px;padding:0 14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 5px 20px #19365b0b}
+.trip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;text-align:center}
+.trip strong{display:block;font-size:17px}.trip small{color:var(--muted)}
+.arrow{font-size:22px;color:var(--blue2)}
+.stats{display:flex;justify-content:space-between;align-items:center;margin:18px 0 8px;font-size:14px}
+.track{height:10px;background:#e9eef6;border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#2563eb,#16a05d);border-radius:99px;transition:width .2s}
+#percent{font-weight:800;color:var(--blue)}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+h2{font-size:18px;margin:0}
+.count{font-size:12px;color:var(--muted);background:#f0f4fa;padding:5px 9px;border-radius:20px}
+.item{display:flex;gap:12px;align-items:flex-start;padding:12px 2px;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+.item input{appearance:none;flex:0 0 21px;width:21px;height:21px;border:2px solid #aab6c8;border-radius:6px;margin:1px 0 0;cursor:pointer}
+.item input:checked{background:var(--green);border-color:var(--green)}
+.item input:checked:after{content:"✓";display:block;color:white;font-weight:800;text-align:center;line-height:17px}
+.item label{cursor:pointer;line-height:1.4;flex:1}
+.item.done label{color:#8792a4;text-decoration:line-through}
+.note{font-size:13px;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+button{border:0;border-radius:11px;padding:11px 14px;font-weight:700;cursor:pointer;font-size:14px}
+.primary{background:var(--blue);color:#fff}.secondary{background:#e8eef8;color:var(--blue)}.danger{background:#fff0f0;color:#a52b2b}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:8px 12px 28px}
+@media print{body{background:#fff}header{background:#fff;color:#111;padding:10px 0}header p{color:#333}main{margin:0 auto}.card{box-shadow:none;break-inside:avoid}.actions{display:none}.item input{print-color-adjust:exact}}
+</style>
+
+<style id="pwa-3d-theme">
+:root{
+  --deep:#071b3b;--mid:#123b73;--blue:#2563eb;--cyan:#67e8f9;
+  --glass:rgba(255,255,255,.82);--shadow:0 22px 55px rgba(6,24,55,.18);
+}
+body{
+  background:
+    radial-gradient(ellipse at 12% 8%,rgba(103,232,249,.24),transparent 32%),
+    radial-gradient(ellipse at 88% 18%,rgba(37,99,235,.20),transparent 34%),
+    linear-gradient(145deg,#eaf3ff 0%,#f5f8ff 48%,#e4edff 100%);
+  perspective:1200px;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.25;
+  background-image:linear-gradient(rgba(18,59,115,.08) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(18,59,115,.08) 1px,transparent 1px);
+  background-size:34px 34px;
+  mask-image:linear-gradient(to bottom,black,transparent 78%);
+}
+header,.header,.hero,.top-card{
+  position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.24)!important;
+  background:linear-gradient(135deg,#071b3b 0%,#123b73 52%,#2563eb 100%)!important;
+  color:white!important;border-radius:26px!important;
+  box-shadow:0 18px 0 rgba(7,27,59,.08),0 28px 55px rgba(7,27,59,.24)!important;
+  transform:translateZ(18px);
+}
+header:after,.header:after,.hero:after,.top-card:after{
+  content:"";position:absolute;width:230px;height:230px;right:-72px;top:-110px;
+  border:1px solid rgba(255,255,255,.22);border-radius:50%;
+  box-shadow:0 0 0 22px rgba(255,255,255,.035),0 0 0 46px rgba(255,255,255,.025);
+  pointer-events:none;
+}
+main,.container,.app,.content{transform-style:preserve-3d}
+section,.card,.category,.group,.checklist-group,.progress-card,.item,.task{
+  background:var(--glass)!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  border-radius:22px!important;
+  box-shadow:0 7px 0 rgba(18,59,115,.055),0 15px 32px rgba(18,59,115,.10)!important;
+  backdrop-filter:blur(14px);
+  transform:translateZ(10px);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+section:hover,.card:hover,.category:hover,.group:hover,.checklist-group:hover,
+.progress-card:hover,.item:hover,.task:hover{
+  transform:translateY(-4px) rotateX(1deg) translateZ(18px);
+  box-shadow:0 10px 0 rgba(18,59,115,.045),0 22px 38px rgba(18,59,115,.16)!important;
+}
+button{
+  border:0!important;border-radius:14px!important;
+  box-shadow:0 5px 0 rgba(7,27,59,.18),0 10px 18px rgba(7,27,59,.12)!important;
+  transition:transform .15s ease,filter .15s ease!important;
+}
+button:active{transform:translateY(4px)!important;box-shadow:0 1px 0 rgba(7,27,59,.2)!important}
+input[type=checkbox]{
+  accent-color:#2563eb;width:21px;height:21px;
+  filter:drop-shadow(0 2px 2px rgba(37,99,235,.18));
+}
+progress,.progress-bar,.progress{
+  border-radius:999px;overflow:hidden;
+}
+#installButton{
+  background:linear-gradient(135deg,#67e8f9,#60a5fa)!important;color:#071b3b!important;
+  font-weight:800;
+}
+.pwa3d-orbit{
+  position:absolute;right:20px;top:18px;width:88px;height:88px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);transform:rotateX(65deg) rotateZ(-25deg);
+  box-shadow:0 0 0 9px rgba(255,255,255,.045),0 0 0 18px rgba(255,255,255,.025);
+  pointer-events:none;
+}
+.pwa3d-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
+  color:inherit;font-size:12px;font-weight:700;letter-spacing:.02em;
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+@media(max-width:600px){
+  body{perspective:900px}
+  section,.card,.category,.group,.checklist-group,.progress-card,.item,.task{border-radius:18px!important}
+}
+</style>
+
+</head>
+<body>
+<header><span class="pwa3d-orbit" aria-hidden="true"></span><div class="wrap">
+<div class="eyebrow">Assistant de préparation au voyage</div>
+<h1>Mon voyage<br>Abidjan → Cotonou</h1>
+<p>Ma checklist personnelle · Premier voyage en avion</p>
+</div></header>
+<main>
+<section class="card">
+<div class="trip">
+<div><strong>ABJ</strong><small>Abidjan</small></div>
+<div class="arrow">✈</div>
+<div><strong>COO</strong><small>Cotonou</small></div>
+</div>
+<div class="stats"><span id="doneText">0 tâche sur 10 terminée</span><span id="percent">0 %</span></div>
+<div class="track"><div class="fill" id="progress"></div></div>
+<p class="note">Coche chaque tâche au fur et à mesure. Ta progression est automatiquement conservée sur cet appareil.</p>
+</section>
+
+<div id="sections"></div>
+<div class="actions">
+<button class="primary" id="installButton" hidden>Installer l’application</button>
+<button class="primary" onclick="window.print()">Imprimer la checklist</button>
+<button class="secondary" onclick="downloadList()">Télécharger en texte</button>
+<button class="danger" onclick="resetList()">Tout décocher</button>
+</div>
+<section class="card">
+<h2>Rappels importants</h2>
+<p class="note">• Garde le passeport, l'argent et les objets précieux dans ton sac cabine, jamais dans la valise en soute.</p>
+<p class="note">• Vérifie la franchise de bagages indiquée sur ton billet : elle dépend de la compagnie et du tarif.</p>
+<p class="note">• Prévois d'arriver à l'aéroport environ 3 heures avant le départ international.</p>
+<p class="note">• Conserve le reçu d'enregistrement de ta valise jusqu'à sa récupération à destination.</p>
+</section>
+</main>
+<footer>Checklist de voyage · Fonctionne hors connexion après ouverture · Les coches sont sauvegardées sur cet appareil.</footer>
+<script>
+const groups=[
+{title:"Documents et formalités",items:[
+"Passeport ivoirien vérifié et valide",
+"Billet aller-retour téléchargé et imprimé",
+"Carnet international de vaccination préparé",
+"Hébergement et adresse à Cotonou confirmés",
+"Numéro de téléphone de mon correspondant enregistré"]},
+{title:"Bagages et effets personnels",items:[
+"Valise pesée et étiquette personnelle ajoutée",
+"Sac cabine préparé avec mes documents",
+"Téléphone chargé et chargeur préparé",
+"Argent et moyen de paiement disponibles"]},
+{title:"Organisation du départ",items:[
+"Transport vers l'aéroport organisé"]}
+];
+const KEY="voyage-abj-coo-checklist-v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){state={}}
+const root=document.getElementById("sections");
+let index=0;
+groups.forEach((g,gi)=>{
+ const card=document.createElement("section");card.className="card";
+ const head=document.createElement("div");head.className="section-head";
+ const h=document.createElement("h2");h.textContent=g.title;
+ const count=document.createElement("span");count.className="count";count.id="count"+gi;
+ head.append(h,count);card.append(head);
+ g.items.forEach((txt)=>{
+  const id="task"+index++;
+  const row=document.createElement("div");row.className="item";
+  const cb=document.createElement("input");cb.type="checkbox";cb.id=id;cb.checked=!!state[id];
+  const label=document.createElement("label");label.htmlFor=id;label.textContent=txt;
+  cb.addEventListener("change",()=>{state[id]=cb.checked;save();row.classList.toggle("done",cb.checked);update()});
+  row.classList.toggle("done",cb.checked);row.append(cb,label);card.append(row);
+ });
+ root.append(card);
+});
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function update(){
+ let total=0,done=0;
+ groups.forEach((g,gi)=>{
+  let n=0;g.items.forEach(()=>{const cb=document.getElementById("task"+total);if(cb){n++;if(cb.checked)done++}total++});
+  document.getElementById("count"+gi).textContent=n+" tâches";
+ });
+ document.getElementById("doneText").textContent=done+" tâche"+(done>1?"s":"")+" sur "+total+" terminée"+(done>1?"s":"");
+ const p=Math.round(done/total*100);document.getElementById("percent").textContent=p+" %";document.getElementById("progress").style.width=p+"%";
+}
+function resetList(){if(confirm("Décocher toutes les tâches ?")){state={};document.querySelectorAll('input[type="checkbox"]').forEach(x=>{x.checked=false;x.closest(".item").classList.remove("done")});save();update()}}
+function downloadList(){
+ let lines=["CHECKLIST — VOYAGE ABIDJAN / COTONOU",""];
+ groups.forEach(g=>{lines.push(g.title);g.items.forEach(t=>{let i=Array.from(document.querySelectorAll("label")).find(x=>x.textContent===t);let c=i&&document.getElementById(i.htmlFor);lines.push((c&&c.checked?"[x] ":"[ ] ")+t)});lines.push("")});
+ const blob=new Blob([lines.join("\n")],{type:"text/plain;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="checklist-voyage-abidjan-cotonou.txt";a.click();URL.revokeObjectURL(a.href);
+}
+update();
+
+// Installation PWA
+let deferredInstallPrompt = null;
+const installButton = document.getElementById("installButton");
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installButton.hidden = false;
+});
+installButton.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installButton.hidden = true;
+});
+window.addEventListener("appinstalled", () => {
+  installButton.hidden = true;
+});
+
+// Mise en cache pour le fonctionnement hors connexion
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(err => console.warn("Service worker:", err));
+  });
+}
+</script>
+</body>
+</html>

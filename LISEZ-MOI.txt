@@ -1,0 +1,21 @@
+# PWA 3D — Mon voyage Abidjan–Cotonou
+
+## Contenu
+- `index.html` : application de checklist avec interface visuelle 3D (profondeur, cartes en relief, effets interactifs)
+- `manifest.webmanifest` : identité et paramètres d’installation
+- `sw.js` : mise en cache et fonctionnement hors connexion
+- `icons/` : icônes de l’application
+
+## Installation sur Android
+Une PWA doit être publiée sur une adresse HTTPS (ou lancée sur localhost). Ouvrir directement `index.html` depuis le gestionnaire de fichiers ne permet pas l’installation PWA.
+
+### Publication gratuite avec GitHub Pages
+1. Créer ou ouvrir un compte sur https://github.com/
+2. Créer un dépôt public, par exemple `voyage-abidjan-cotonou`.
+3. Téléverser tous les fichiers et le dossier `icons` en conservant cette structure.
+4. Dans **Settings > Pages**, choisir **Deploy from a branch**, sélectionner `main` et `/ (root)`, puis enregistrer.
+5. Attendre l’adresse publiée par GitHub Pages.
+6. Ouvrir cette adresse avec Chrome sur Android, attendre le chargement, puis choisir **Installer l’application** si le bouton apparaît, ou **⋮ > Installer l’application / Ajouter à l’écran d’accueil**.
+
+## Fonctionnement
+La checklist conserve les coches dans le stockage local du navigateur sur cet appareil. Le service worker met en cache l’application pour les ouvertures hors connexion après une première visite en ligne.
